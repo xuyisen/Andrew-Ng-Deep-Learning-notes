@@ -9,13 +9,38 @@
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
 </head>
 <body>
-  <div id="app"></div>
+   <div id="app">加载中...</div>
   <script>
     window.$docsify = {
-      name: '',
-      repo: ''
+      name: '《深度学习》课程笔记',
+      homepage: 'README.md',
+      loadSidebar: true,
+      subMaxLevel: 4,
+      repo: 'xuyisen/Andrew-Ng-Deep-Learning-notes',
+      themeColor: '#3F51B5',
+      executeScript: true,
+      auto2top: true,
+      search: {
+        placeholder: '搜索'
+      },
+      plugins: [
+        function(hook, vm) {
+          hook.doneEach(function(html, next) {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            MathJax.Hub.Config({
+              tex2jax: {
+                inlineMath: [ ['$', '$'] ],
+                displayMath: [ ['$$', '$$']]
+              }
+            });
+          })
+        }
+      ]
     }
   </script>
+  <script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/external-script.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
 </body>
 </html>
